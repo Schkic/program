@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome Kiosk</title>
+    <style>
+        body { margin: 0; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+        #content { position: absolute; width: 100%; height: 100%; display: none; }
+        video, img { width: 100%; height: 100%; object-fit: cover; }
+    </style>
+</head>
+<body>
+    <div id="content">
+        <video id="welcomeVideo" autoplay>
+            <source src="YOUR_VIDEO_LINK_HERE" type="video/mp4">
+            Your browser does not support HTML5 video.
+        </video>
+        <div id="slides" style="display: none;">
+            <div class="slide" id="slide1" style="display: none;"></div>
+            <div class="slide" id="slide2" style="display: none;"></div>
+            <!-- Add more slides if needed -->
+        </div>
+    </div>
+
+    <script>
+        const slides = [
+            { img: "YOUR_IMAGE_LINK_1_HERE", text: "Text for Slide 1" },
+            { img: "YOUR_IMAGE_LINK_2_HERE", text: "Text for Slide 2" },
+            // Add more slides as needed
+        ];
+        let currentSlide = 0;
+
+        function switchToSlides() {
+            document.getElementById('welcomeVideo').style.display = 'none';
+            document.getElementById('slides').style.display = 'block';
+            showSlide();
+        }
+
+        function showSlide() {
+            const slide = slides[currentSlide];
+            const slideDiv = document.getElementById(`slide${currentSlide + 1}`);
+            slideDiv.innerHTML = `<img src="${slide.img}" alt="Slide Image"><p>${slide.text}</p>`;
+            slideDiv.style.display = 'block';
+            setTimeout(() => {
+                slideDiv.style.display = 'none';
+                currentSlide = (currentSlide + 1) % slides.length;
+                showSlide();
+            }, 10000); // Show each slide for 10 seconds
+        }
+
+        document.getElementById('welcomeVideo').addEventListener('ended', switchToSlides);
+        document.getElementById('content').style.display = 'block';
+    </script>
+</body>
+</html>
