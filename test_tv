@@ -13,7 +13,7 @@
 <body>
     <div id="content">
         <video id="welcomeVideo" autoplay>
-            <source src="YOUR_VIDEO_LINK_HERE" type="video/mp4">
+            <source src="https://drive.google.com/file/d/1seG1bMLfGpP3fjTllJzabpUjIYdRGXlW/view?usp=sharing" type="video/mp4">
             Your browser does not support HTML5 video.
         </video>
         <div id="slides" style="display: none;">
